@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic page setup and responsive scaling -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>Checkout</title>
+
+    <!-- Links external stylesheet for all layout and styling -->
+    <link href="style.css"
+          rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Contains logo, search bar and navigation links -->
+<div class="header">
+
+    <!-- Inner container keeps header centred and structured -->
+    <div class="header-inner">
+
+        <!-- Logo linking back to homepage -->
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img class="polluted-logo"
+                     src="Images/Poll - 1.png"
+                     alt="Logo">
+
+            </a>
+
+        </div>
+
+        <!-- Search bar -->
+        <div class="search">
+
+            <input type="text"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Navigation menu -->
+        <div class="navigation">
+
+            <a class="link"
+               href="index.html">
+
+                Home
+
+            </a>
+
+            <a class="link"
+               href="about.html">
+
+                About Us
+
+            </a>
+
+            <a class="link"
+               href="contact.html">
+
+                Contact Us
+
+            </a>
+
+            <!-- Returns user to cart page -->
+            <a class="link"
+               href="cart.html">
+
+                Back to Cart
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Divider separating header from page content -->
+<hr>
+
+<!-- Main checkout content -->
+<div class="main-content">
+
+    <!-- Page heading -->
+    <h1>
+        Checkout
+    </h1>
+
+    <!-- Checkout form containing billing and payment details -->
+    <form class="checkout-form">
+
+        <!-- Customer information section -->
+        <h2>
+            Billing Details
+        </h2>
+
+        <!-- Customer full name -->
+        <label>
+            Full Name:
+        </label>
+
+        <input type="text"
+               id="fullname"
+               placeholder="John Smith">
+
+        <!-- Customer email -->
+        <label>
+            Email Address:
+        </label>
+
+        <input type="email"
+               id="email"
+               placeholder="john@email.com">
+
+        <!-- Delivery address -->
+        <label>
+            Address Line 1:
+        </label>
+
+        <input type="text"
+               id="address"
+               placeholder="123 Example Street">
+
+        <!-- Town or city -->
+        <label>
+            Town / City:
+        </label>
+
+        <input type="text"
+               id="city"
+               placeholder="London">
+
+        <!-- Postal code -->
+        <label>
+            Postcode:
+        </label>
+
+        <input type="text"
+               id="postcode"
+               placeholder="N7 7AJ">
+
+        <!-- Payment information section -->
+        <h2>
+            Payment Details
+        </h2>
+
+        <!-- Name displayed on card -->
+        <label>
+            Cardholder Name:
+        </label>
+
+        <input type="text"
+               id="cardholder"
+               placeholder="John Smith">
+
+        <!-- Card number field -->
+        <label>
+            Card Number:
+        </label>
+
+        <input type="text"
+               id="card"
+               placeholder="1234 5678 9012 3456">
+
+        <!-- Card expiry date -->
+        <label>
+            Expiry Date:
+        </label>
+
+        <input type="text"
+               id="expiry"
+               placeholder="MM/YY">
+
+        <!-- Card security code -->
+        <label>
+            CVV:
+        </label>
+
+        <input type="text"
+               id="cvv"
+               placeholder="123">
+
+        <!-- Checkout information box -->
+        <div class="order-summary">
+
+            <h3>
+                Order Summary
+            </h3>
+
+            <!-- Security and delivery information -->
+            <p>
+                Secure Checkout 🔒
+            </p>
+
+            <p>
+                Free UK Delivery
+            </p>
+
+            <p>
+                Estimated Delivery:
+                2-3 Working Days
+            </p>
+
+            <p>
+                Secure SSL Encrypted Payment
+            </p>
+
+        </div>
+
+        <!-- Completes purchase -->
+        <input type="button"
+               value="Complete Secure Payment"
+               onclick="processPayment()">
+
+    </form>
+
+</div>
+
+<!-- Handles checkout validation and order completion -->
+<script>
+
+function processPayment() {
+
+    /* Gets customer details from form */
+    let fullname =
+        document.getElementById(
+            "fullname"
+        ).value;
+
+    let email =
+        document.getElementById(
+            "email"
+        ).value;
+
+    let address =
+        document.getElementById(
+            "address"
+        ).value;
+
+    let postcode =
+        document.getElementById(
+            "postcode"
+        ).value;
+
+    let card =
+        document.getElementById(
+            "card"
+        ).value;
+
+    let expiry =
+        document.getElementById(
+            "expiry"
+        ).value;
+
+    let cvv =
+        document.getElementById(
+            "cvv"
+        ).value;
+
+    let city =
+        document.getElementById(
+            "city"
+        ).value;
+
+    let cardholder =
+        document.getElementById(
+            "cardholder"
+        ).value;
+
+    /* Checks all fields have been completed */
+    if (
+        fullname === "" ||
+        email === "" ||
+        address === "" ||
+        city === "" ||
+        postcode === "" ||
+        cardholder === "" ||
+        card === "" ||
+        expiry === "" ||
+        cvv === ""
+    ) {
+
+        alert(
+            "Please complete all fields."
+        );
+
+        return;
+
+    }
+
+    /* Creates success flag for homepage banner */
+    localStorage.setItem(
+        "orderSuccess",
+        "true"
+    );
+
+    /* Clears cart quantities */
+    localStorage.setItem("trainersQty", 0);
+    localStorage.setItem("pantsQty", 0);
+    localStorage.setItem("shirtQty", 0);
+    localStorage.setItem("hoodieQty", 0);
+
+    /* Restores product visibility */
+    localStorage.setItem("trainersRemoved", "false");
+    localStorage.setItem("pantsRemoved", "false");
+    localStorage.setItem("shirtRemoved", "false");
+    localStorage.setItem("hoodieRemoved", "false");
+
+    /* Redirects customer to homepage */
+    window.location.href = "index.html";
+
+}
+
+</script>
+
+<!-- Footer containing links, copyright and social media -->
+<div class="footer">
+
+    <!-- Quick access navigation links -->
+    <div class="secondary-links">
+
+        <p>
+            <a href="about.html">About Us</a>
+        </p>
+
+        <p>
+            <a href="contact.html">Contact Us</a>
+        </p>
+
+        <p>
+            <a href="#">Careers</a>
+        </p>
+
+    </div>
+
+    <!-- Copyright information -->
+    <div class="copyright">
+
+        <p>
+            © 2026 Polluted Streetwear.
+            All rights reserved.
+        </p>
+
+    </div>
+
+    <!-- Social media links -->
+    <div class="socials">
+
+        <a href="https://www.facebook.com"
+           target="_blank">
+
+            <img src="Images/facebook.png"
+                 alt="Facebook">
+
+        </a>
+
+        <a href="https://www.twitter.com"
+           target="_blank">
+
+            <img src="Images/x.png"
+                 alt="X">
+
+        </a>
+
+        <a href="https://www.instagram.com"
+           target="_blank">
+
+            <img src="Images/instagram.png"
+                 alt="Instagram">
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

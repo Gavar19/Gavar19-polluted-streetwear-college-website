@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic page setup and responsive scaling -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>Cart</title>
+
+    <!-- Imports Montserrat font for consistent modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Links external stylesheet for all layout and styling -->
+    <link href="style.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<!-- Contains logo, search bar and navigation links -->
+<div class="header">
+
+    <!-- Inner container to keep header centred and structured -->
+    <div class="header-inner">
+
+        <!-- Logo section linking back to homepage -->
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img class="polluted-logo"
+                     src="Images/Poll - 1.png"
+                     alt="Logo">
+
+            </a>
+
+        </div>
+
+        <!-- Search bar for user input -->
+        <div class="search">
+
+            <input type="text"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Navigation menu for switching between pages -->
+        <div class="navigation">
+
+            <a class="link"
+               href="index.html">
+
+                Home
+
+            </a>
+
+            <a class="link"
+               href="about.html">
+
+                About Us
+
+            </a>
+
+            <a class="link"
+               href="contact.html">
+
+                Contact Us
+
+            </a>
+
+            <!-- Cart link with iPhone style notification badge -->
+            <a class="link cart-link active"
+               href="cart.html">
+
+                🛒 Cart
+
+                <!-- Dynamic cart badge -->
+                <span id="cart-badge">0</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Divider line separating header from main content -->
+<hr>
+
+<!-- Main cart container holding items and summary -->
+<div class="cart-container">
+
+    <!-- Left side: list of items added to cart -->
+    <div class="cart-items">
+
+        <!-- Page heading -->
+        <h1>
+            Your Cart 🛒
+        </h1>
+
+        <!-- Trainers cart item -->
+        <div class="cart-item"
+             id="trainers-item">
+
+            <img src="Images/polluted creps 2.png"
+                 alt="Trainers">
+
+            <div>
+
+                <p>
+                    <strong>Trainers</strong>
+                </p>
+
+                <p>
+                    Size: UK 9
+                </p>
+
+                <!-- Quantity selector connected to JavaScript -->
+                <p>
+
+                    Quantity:
+
+                    <input type="number"
+                           id="trainers-qty"
+                           value="1"
+                           min="1"
+                           onchange="updateCart()">
+
+                </p>
+
+                <p>
+                    £299.99 each
+                </p>
+
+                <!-- Remove button -->
+                <button onclick="removeItem('trainers-item', 'trainers-summary')">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Pants cart item -->
+        <div class="cart-item"
+             id="pants-item">
+
+            <img src="Images/polluted pants.png"
+                 alt="Pants">
+
+            <div>
+
+                <p>
+                    <strong>Pants</strong>
+                </p>
+
+                <p>
+                    Size: L
+                </p>
+
+                <p>
+
+                    Quantity:
+
+                    <input type="number"
+                           id="pants-qty"
+                           value="1"
+                           min="1"
+                           onchange="updateCart()">
+
+                </p>
+
+                <p>
+                    £34.99 each
+                </p>
+
+                <button onclick="removeItem('pants-item', 'pants-summary')">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- T-Shirt cart item -->
+        <div class="cart-item"
+             id="shirt-item">
+
+            <img src="Images/DB6AA260-5D0A-4F7E-9D70-856119CFE4D3.PNG"
+                 alt="Tshirt">
+
+            <div>
+
+                <p>
+                    <strong>T-Shirt</strong>
+                </p>
+
+                <p>
+                    Size: M
+                </p>
+
+                <p>
+
+                    Quantity:
+
+                    <input type="number"
+                           id="shirt-qty"
+                           value="1"
+                           min="1"
+                           onchange="updateCart()">
+
+                </p>
+
+                <p>
+                    £27.99 each
+                </p>
+
+                <button onclick="removeItem('shirt-item', 'shirt-summary')">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Hoodie cart item -->
+        <div class="cart-item"
+             id="hoodie-item">
+
+            <img src="Images/923712FE-DEF1-47C9-BC07-1FECF3FA54FB.png"
+                 alt="Hoodie">
+
+            <div>
+
+                <p>
+                    <strong>Hoodie</strong>
+                </p>
+
+                <p>
+                    Size: L
+                </p>
+
+                <p>
+
+                    Quantity:
+
+                    <input type="number"
+                           id="hoodie-qty"
+                           value="1"
+                           min="1"
+                           onchange="updateCart()">
+
+                </p>
+
+                <p>
+                    £42.99 each
+                </p>
+
+                <button onclick="removeItem('hoodie-item', 'hoodie-summary')">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right side: order summary and checkout -->
+    <div class="cart-summary">
+
+        <!-- Summary heading -->
+        <h2>
+            Order Summary
+        </h2>
+
+        <!-- Individual price rows -->
+        <div class="summary-row"
+             id="trainers-summary">
+
+            <span>
+                Trainers
+            </span>
+
+            <span id="trainers-total">
+                £299.99
+            </span>
+
+        </div>
+
+        <div class="summary-row"
+             id="pants-summary">
+
+            <span>
+                Pants
+            </span>
+
+            <span id="pants-total">
+                £34.99
+            </span>
+
+        </div>
+
+        <div class="summary-row"
+             id="shirt-summary">
+
+            <span>
+                T-Shirts
+            </span>
+
+            <span id="shirt-total">
+                £27.99
+            </span>
+
+        </div>
+
+        <div class="summary-row"
+             id="hoodie-summary">
+
+            <span>
+                Hoodies
+            </span>
+
+            <span id="hoodie-total">
+                £42.99
+            </span>
+
+        </div>
+
+        <!-- Divider separating items from total -->
+        <div class="summary-divider"></div>
+
+        <!-- Total cost section -->
+        <div class="summary-total">
+
+            <span>
+                Total
+            </span>
+
+            <span id="grand-total">
+                £0.00
+            </span>
+
+        </div>
+
+        <!-- Checkout button -->
+        <a href="checkout.html">
+
+    <button class="checkout-btn">
+
+        Checkout
+
+    </button>
+
+</a>
+
+    </div>
+
+</div>
+
+<!-- Contains secondary navigation, copyright and social links -->
+<div class="footer">
+
+    <!-- Additional navigation links for quick access -->
+    <div class="secondary-links">
+
+        <p>
+            <a href="about.html">About Us</a>
+        </p>
+
+        <p>
+            <a href="contact.html">Contact Us</a>
+        </p>
+
+        <p>
+            <a href="#">Careers</a>
+        </p>
+
+    </div>
+
+    <!-- Copyright information -->
+    <div class="copyright">
+
+        <p>
+            © 2026 Polluted Streetwear.
+            All rights reserved.
+        </p>
+
+    </div>
+
+    <!-- Social media icons linking to external platforms -->
+    <div class="socials">
+
+        <a href="https://www.facebook.com"
+           target="_blank">
+
+            <img src="Images/facebook.png"
+                 alt="Facebook">
+
+        </a>
+
+        <a href="https://www.twitter.com"
+           target="_blank">
+
+            <img src="Images/x.png"
+                 alt="X">
+
+        </a>
+
+        <a href="https://www.instagram.com"
+           target="_blank">
+
+            <img src="Images/instagram.png"
+                 alt="Instagram">
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- JavaScript used for dynamic cart functionality -->
+<script>
+
+/* Loads saved cart data when page opens */
+window.onload = function () {
+
+    /* Loads saved quantities */
+    if (localStorage.getItem("trainersQty")) {
+
+        document.getElementById("trainers-qty").value =
+            localStorage.getItem("trainersQty");
+
+    }
+
+    if (localStorage.getItem("pantsQty")) {
+
+        document.getElementById("pants-qty").value =
+            localStorage.getItem("pantsQty");
+
+    }
+
+    if (localStorage.getItem("shirtQty")) {
+
+        document.getElementById("shirt-qty").value =
+            localStorage.getItem("shirtQty");
+
+    }
+
+    if (localStorage.getItem("hoodieQty")) {
+
+        document.getElementById("hoodie-qty").value =
+            localStorage.getItem("hoodieQty");
+
+    }
+
+    /* Keeps removed items hidden after refresh */
+    if (localStorage.getItem("trainersRemoved") === "true") {
+
+        document.getElementById("trainers-item").style.display =
+            "none";
+
+        document.getElementById("trainers-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("pantsRemoved") === "true") {
+
+        document.getElementById("pants-item").style.display =
+            "none";
+
+        document.getElementById("pants-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("shirtRemoved") === "true") {
+
+        document.getElementById("shirt-item").style.display =
+            "none";
+
+        document.getElementById("shirt-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("hoodieRemoved") === "true") {
+
+        document.getElementById("hoodie-item").style.display =
+            "none";
+
+        document.getElementById("hoodie-summary").style.display =
+            "none";
+
+    }
+
+    /* Updates totals and cart badge */
+    updateCart();
+
+};
+
+/* Updates prices, totals and cart badge */
+function updateCart() {
+
+    /* Gets quantity values from inputs */
+    let trainersQty =
+        Number(document.getElementById("trainers-qty").value);
+
+    let pantsQty =
+        Number(document.getElementById("pants-qty").value);
+
+    let shirtQty =
+        Number(document.getElementById("shirt-qty").value);
+
+    let hoodieQty =
+        Number(document.getElementById("hoodie-qty").value);
+
+    /* Saves quantities to local storage */
+    localStorage.setItem(
+        "trainersQty",
+        trainersQty
+    );
+
+    localStorage.setItem(
+        "pantsQty",
+        pantsQty
+    );
+
+    localStorage.setItem(
+        "shirtQty",
+        shirtQty
+    );
+
+    localStorage.setItem(
+        "hoodieQty",
+        hoodieQty
+    );
+
+    /* Product prices */
+    let trainersPrice = 299.99;
+
+    let pantsPrice = 34.99;
+
+    let shirtPrice = 27.99;
+
+    let hoodiePrice = 42.99;
+
+    /* Calculates totals */
+    let trainersTotal =
+        trainersQty * trainersPrice;
+
+    let pantsTotal =
+        pantsQty * pantsPrice;
+
+    let shirtTotal =
+        shirtQty * shirtPrice;
+
+    let hoodieTotal =
+        hoodieQty * hoodiePrice;
+
+    /* Updates summary values */
+    document.getElementById("trainers-total").innerText =
+        "£" + trainersTotal.toFixed(2);
+
+    document.getElementById("pants-total").innerText =
+        "£" + pantsTotal.toFixed(2);
+
+    document.getElementById("shirt-total").innerText =
+        "£" + shirtTotal.toFixed(2);
+
+    document.getElementById("hoodie-total").innerText =
+        "£" + hoodieTotal.toFixed(2);
+
+    /* Calculates overall total */
+    let grandTotal = 0;
+
+    if (document.getElementById("trainers-item").style.display !== "none") {
+
+        grandTotal += trainersTotal;
+
+    }
+
+    if (document.getElementById("pants-item").style.display !== "none") {
+
+        grandTotal += pantsTotal;
+
+    }
+
+    if (document.getElementById("shirt-item").style.display !== "none") {
+
+        grandTotal += shirtTotal;
+
+    }
+
+    if (document.getElementById("hoodie-item").style.display !== "none") {
+
+        grandTotal += hoodieTotal;
+
+    }
+
+    /* Updates grand total text */
+    document.getElementById("grand-total").innerText =
+        "£" + grandTotal.toFixed(2);
+
+    /* Calculates cart quantity */
+    let cartCount = 0;
+
+    if (document.getElementById("trainers-item").style.display !== "none") {
+
+        cartCount += trainersQty;
+
+    }
+
+    if (document.getElementById("pants-item").style.display !== "none") {
+
+        cartCount += pantsQty;
+
+    }
+
+    if (document.getElementById("shirt-item").style.display !== "none") {
+
+        cartCount += shirtQty;
+
+    }
+
+    if (document.getElementById("hoodie-item").style.display !== "none") {
+
+        cartCount += hoodieQty;
+
+    }
+
+    /* Updates iPhone style cart badge */
+    document.getElementById("cart-badge").innerText =
+        cartCount;
+
+}
+
+/* Removes selected item from cart */
+function removeItem(itemId, summaryId) {
+
+    /* Hides cart item */
+    document.getElementById(itemId).style.display =
+        "none";
+
+    /* Hides matching summary row */
+    document.getElementById(summaryId).style.display =
+        "none";
+
+    /* Saves removed state */
+    localStorage.setItem(
+        itemId.replace("-item", "Removed"),
+        "true"
+    );
+
+    /* Resets quantity back to 0 */
+    if (itemId === "trainers-item") {
+
+        localStorage.setItem("trainersQty", 0);
+
+        document.getElementById("trainers-qty").value = 0;
+
+    }
+
+    if (itemId === "pants-item") {
+
+        localStorage.setItem("pantsQty", 0);
+
+        document.getElementById("pants-qty").value = 0;
+
+    }
+
+    if (itemId === "shirt-item") {
+
+        localStorage.setItem("shirtQty", 0);
+
+        document.getElementById("shirt-qty").value = 0;
+
+    }
+
+    if (itemId === "hoodie-item") {
+
+        localStorage.setItem("hoodieQty", 0);
+
+        document.getElementById("hoodie-qty").value = 0;
+
+    }
+
+    /* Recalculates totals */
+    updateCart();
+
+}
+
+</script>
+<!-- JavaScript used for dynamic cart badge -->
+<script>
+
+/* Updates cart badge using all products */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates cart badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    /* Loads saved quantities */
+    if (localStorage.getItem("trainersQty")) {
+
+        document.getElementById("trainers-qty").value =
+            localStorage.getItem("trainersQty");
+
+    }
+
+    if (localStorage.getItem("pantsQty")) {
+
+        document.getElementById("pants-qty").value =
+            localStorage.getItem("pantsQty");
+
+    }
+
+    if (localStorage.getItem("shirtQty")) {
+
+        document.getElementById("shirt-qty").value =
+            localStorage.getItem("shirtQty");
+
+    }
+
+    if (localStorage.getItem("hoodieQty")) {
+
+        document.getElementById("hoodie-qty").value =
+            localStorage.getItem("hoodieQty");
+
+    }
+
+    /* Keeps removed items hidden after refresh */
+    if (localStorage.getItem("trainersRemoved") === "true") {
+
+        document.getElementById("trainers-item").style.display =
+            "none";
+
+        document.getElementById("trainers-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("pantsRemoved") === "true") {
+
+        document.getElementById("pants-item").style.display =
+            "none";
+
+        document.getElementById("pants-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("shirtRemoved") === "true") {
+
+        document.getElementById("shirt-item").style.display =
+            "none";
+
+        document.getElementById("shirt-summary").style.display =
+            "none";
+
+    }
+
+    if (localStorage.getItem("hoodieRemoved") === "true") {
+
+        document.getElementById("hoodie-item").style.display =
+            "none";
+
+        document.getElementById("hoodie-summary").style.display =
+            "none";
+
+    }
+
+    /* Updates totals and cart badge */
+    updateCart();
+
+};
+
+</script>
+</body>
+</html>

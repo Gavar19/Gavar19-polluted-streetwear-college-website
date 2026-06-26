@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic page setup and responsive scaling -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>About Us</title>
+
+    <!-- Imports Montserrat font for consistent modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Links external stylesheet for all layout and styling -->
+    <link href="style.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<!-- Contains logo, search bar and navigation links -->
+<div class="header">
+
+    <!-- Inner container to keep header centred and structured -->
+    <div class="header-inner">
+
+        <!-- Logo section linking back to homepage -->
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img class="polluted-logo"
+                     src="Images/Poll - 1.png"
+                     alt="Logo">
+
+            </a>
+
+        </div>
+
+        <!-- Search bar for user input -->
+        <div class="search">
+
+            <input type="text"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Navigation menu for switching between pages -->
+        <div class="navigation">
+
+            <a class="link"
+               href="index.html">
+
+                Home
+
+            </a>
+
+            <a class="link active"
+               href="about.html">
+
+                About Us
+
+            </a>
+
+            <a class="link"
+               href="contact.html">
+
+                Contact Us
+
+            </a>
+
+            <!-- Cart link with iPhone style notification badge -->
+            <a class="link cart-link"
+               href="cart.html">
+
+                🛒 Cart
+
+                <!-- Dynamic cart badge -->
+                <span id="cart-badge">0</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Divider line separating header from main content -->
+<hr>
+
+<!-- Main content container (centred and responsive) -->
+<div class="main-content">
+
+    <!-- Contains all About page sections grouped together -->
+    <div class="about-section">
+
+        <!-- Introduction section explaining the brand -->
+        <div class="about-block">
+
+            <h2>
+                Who We Are
+            </h2>
+
+            <p>
+                Polluted Streetwear is a modern clothing
+                brand focused on combining bold design
+                with everyday comfort. Our goal is to
+                create pieces that stand out while
+                remaining wearable, durable and high
+                quality.
+            </p>
+
+        </div>
+
+        <!-- Two-column layout for mission and benefits -->
+        <div class="about-row">
+
+            <!-- Brand mission statement -->
+            <div class="about-block">
+
+                <h2>
+                    Our Mission
+                </h2>
+
+                <p>
+                    We aim to deliver streetwear that
+                    reflects individuality and confidence.
+                    Every item is designed with attention
+                    to detail, ensuring it not only looks
+                    good but feels good too.
+                </p>
+
+            </div>
+
+            <!-- Key selling points listed clearly for users -->
+            <div class="about-block">
+
+                <h2>
+                    Why Choose Us
+                </h2>
+
+                <ul>
+
+                    <li>
+                        High quality materials
+                    </li>
+
+                    <li>
+                        Comfortable everyday wear
+                    </li>
+
+                    <li>
+                        Modern and unique designs
+                    </li>
+
+                    <li>
+                        Affordable pricing
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Closing section encouraging user engagement -->
+        <div class="about-block">
+
+            <h2>
+                Join the Movement
+            </h2>
+
+            <p>
+                Polluted is more than just clothing,
+                it’s a statement. Explore our collection
+                and be part of the brand.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="about-block">
+
+    <h2>
+        Visit Us
+    </h2>
+
+    <p>
+
+        Visit our flagship store located at Emirates Stadium.
+
+    </p>
+
+    <a href="https://maps.google.com/?q=Emirates+Stadium+Hornsey+Road+London+N7+7AJ"
+       target="_blank">
+
+        Open Google Maps
+
+    </a>
+
+</div>
+
+<!-- Contains secondary navigation, copyright and social links -->
+<div class="footer">
+
+    <!-- Additional navigation links for quick access -->
+    <div class="secondary-links">
+
+        <p>
+            <a href="about.html">About Us</a>
+        </p>
+
+        <p>
+            <a href="contact.html">Contact Us</a>
+        </p>
+
+        <p>
+            <a href="#">Careers</a>
+        </p>
+
+    </div>
+
+    <!-- Copyright information -->
+    <div class="copyright">
+
+        <p>
+            © 2026 Polluted Streetwear.
+            All rights reserved.
+        </p>
+
+    </div>
+
+    <!-- Social media icons linking to external platforms -->
+    <div class="socials">
+
+        <a href="https://www.facebook.com"
+           target="_blank">
+
+            <img src="Images/facebook.png"
+                 alt="Facebook">
+
+        </a>
+
+        <a href="https://www.twitter.com"
+           target="_blank">
+
+            <img src="Images/x.png"
+                 alt="X">
+
+        </a>
+
+        <a href="https://www.instagram.com"
+           target="_blank">
+
+            <img src="Images/instagram.png"
+                 alt="Instagram">
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- JavaScript used for dynamic cart badge -->
+<script>
+
+/* Updates cart badge using all products */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates cart badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    updateCartBadge();
+
+};
+
+</script>
+<!-- JavaScript used for dynamic cart badge -->
+<script>
+
+/* Updates cart badge using all products */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates cart badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    updateCartBadge();
+
+};
+
+</script>
+</body>
+</html>

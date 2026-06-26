@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic page setup and responsive scaling -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>Contact Us</title>
+
+    <!-- Imports Montserrat font for consistent modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Links external stylesheet for all layout and styling -->
+    <link href="style.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<!-- Contains logo, search bar and navigation links -->
+<div class="header">
+
+    <!-- Inner container to keep header centred and structured -->
+    <div class="header-inner">
+
+        <!-- Logo section linking back to homepage -->
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img class="polluted-logo"
+                     src="Images/Poll - 1.png"
+                     alt="Logo">
+
+            </a>
+
+        </div>
+
+        <!-- Search bar for user input -->
+        <div class="search">
+
+            <input type="text"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Navigation menu for switching between pages -->
+        <div class="navigation">
+
+            <a class="link"
+               href="index.html">
+
+                Home
+
+            </a>
+
+            <a class="link"
+               href="about.html">
+
+                About Us
+
+            </a>
+
+            <a class="link active"
+               href="contact.html">
+
+                Contact Us
+
+            </a>
+
+            <!-- Cart link with dynamic badge -->
+            <a class="link cart-link"
+               href="cart.html">
+
+                🛒 Cart
+
+                <!-- Dynamic cart quantity badge -->
+                <span id="cart-badge">0</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Divider line separating header from main content -->
+<hr>
+
+<!-- Main content container (centred and responsive) -->
+<div class="main-content">
+
+    <!-- Top section introducing the page -->
+    <div class="hero">
+
+        <h1>
+            Contact Us
+        </h1>
+
+        <h3>
+            Get in touch with the Polluted team.
+        </h3>
+
+    </div>
+
+    <!-- Contact form for user interaction -->
+    <div class="contact-form">
+
+        <form>
+
+            <!-- Name input -->
+            <label for="name">
+                Full Name:
+            </label>
+
+            <br>
+
+            <input type="text"
+                   id="name"
+                   name="name">
+
+            <br>
+
+            <!-- Email input -->
+            <label for="email">
+                Email:
+            </label>
+
+            <br>
+
+            <input type="email"
+                   id="email"
+                   name="email">
+
+            <br>
+
+            <!-- Message input -->
+            <label for="message">
+                Message:
+            </label>
+
+            <br>
+
+            <textarea id="message"
+                      name="message"></textarea>
+
+            <br>
+
+            <!-- Submit button -->
+            <input type="button"
+                value="Submit"
+             onclick="submitForm()">
+        </form>
+
+    </div>
+
+    <!-- Contact details for alternative communication -->
+    <div class="contact-info">
+
+        <h2>
+            Contact Details
+        </h2>
+
+        <p>
+            Email:
+            pollutedstreetwear@gmail.com
+        </p>
+
+        <p>
+            Phone:
+            07212121212
+        </p>
+
+        <p>
+            Address:
+            Unit 7, Industrial Yard,
+            Hackney Wick, London,
+            E9 5EN, United Kingdom
+        </p>
+
+    </div>
+
+</div>
+
+<!-- Contains secondary navigation, copyright and social links -->
+<div class="footer">
+
+    <!-- Additional navigation links for quick access -->
+    <div class="secondary-links">
+
+        <p>
+            <a href="about.html">About Us</a>
+        </p>
+
+        <p>
+            <a href="contact.html">Contact Us</a>
+        </p>
+
+        <p>
+            <a href="#">Careers</a>
+        </p>
+
+    </div>
+
+    <!-- Copyright information -->
+    <div class="copyright">
+
+        <p>
+            © 2026 Polluted Streetwear.
+            All rights reserved.
+        </p>
+
+    </div>
+
+    <!-- Social media icons linking to external platforms -->
+    <div class="socials">
+
+        <a href="https://www.facebook.com"
+           target="_blank">
+
+            <img src="Images/facebook.png"
+                 alt="Facebook">
+
+        </a>
+
+        <a href="https://www.twitter.com"
+           target="_blank">
+
+            <img src="Images/x.png"
+                 alt="X">
+
+        </a>
+
+        <a href="https://www.instagram.com"
+           target="_blank">
+
+            <img src="Images/instagram.png"
+                 alt="Instagram">
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- JavaScript used for dynamic cart badge -->
+<script>
+
+/* Updates cart badge using all products */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Checks if products were removed */
+    let trainersRemoved =
+        localStorage.getItem("trainersRemoved");
+
+    let pantsRemoved =
+        localStorage.getItem("pantsRemoved");
+
+    let shirtRemoved =
+        localStorage.getItem("shirtRemoved");
+
+    let hoodieRemoved =
+        localStorage.getItem("hoodieRemoved");
+
+    /* Removed products no longer count */
+    if (trainersRemoved === "true") {
+
+        trainersQty = 0;
+
+    }
+
+    if (pantsRemoved === "true") {
+
+        pantsQty = 0;
+
+    }
+
+    if (shirtRemoved === "true") {
+
+        shirtQty = 0;
+
+    }
+
+    if (hoodieRemoved === "true") {
+
+        hoodieQty = 0;
+
+    }
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates cart badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    updateCartBadge();
+
+};
+
+</script>
+<!-- JavaScript used for dynamic cart badge -->
+<script>
+
+/* Updates cart badge using all products */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates cart badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    updateCartBadge();
+
+};
+
+</script>
+<script>
+
+function submitForm() {
+
+    let name =
+        document.getElementById("name").value;
+
+    let email =
+        document.getElementById("email").value;
+
+    let message =
+        document.getElementById("message").value;
+
+    if (
+        name === "" ||
+        email === "" ||
+        message === ""
+    ) {
+
+        alert(
+            "Please complete all fields before submitting."
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Thank you for contacting Polluted Streetwear. Your message has been sent successfully."
+    );
+
+}
+
+</script>
+</body>
+</html>
