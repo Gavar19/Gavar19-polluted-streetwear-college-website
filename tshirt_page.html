@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic page setup and responsive scaling -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title shown in browser tab -->
+    <title>Womens Reflective Tee</title>
+
+    <!-- Imports Montserrat font for consistent modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Links external stylesheet for all layout and styling -->
+    <link href="style.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<!-- Contains logo, search bar and navigation links -->
+<div class="header">
+
+    <!-- Inner container to keep header centred and structured -->
+    <div class="header-inner">
+
+        <!-- Logo section linking back to homepage -->
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img class="polluted-logo"
+                     src="Images/Poll - 1.png"
+                     alt="Logo">
+
+            </a>
+
+        </div>
+
+        <!-- Search bar for user input -->
+        <div class="search">
+
+            <input type="text"
+                   placeholder="Search...">
+
+        </div>
+
+        <!-- Navigation menu for switching between pages -->
+        <div class="navigation">
+
+            <a class="link"
+               href="index.html">
+
+                Home
+
+            </a>
+
+            <a class="link"
+               href="about.html">
+
+                About Us
+
+            </a>
+
+            <a class="link"
+               href="contact.html">
+
+                Contact Us
+
+            </a>
+
+            <!-- Cart link with dynamic badge -->
+            <a class="link cart-link"
+               href="cart.html">
+
+                🛒 Cart
+
+                <!-- Dynamic cart quantity badge -->
+                <span id="cart-badge">0</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Divider line separating header from main content -->
+<hr>
+
+<!-- Product page container holding image and details side by side -->
+<div class="product-page">
+
+    <!-- Left side: product image -->
+    <div class="product-image">
+
+    <button onclick="previousImage()">
+        ←
+    </button>
+
+    <img id="product-image"
+         src="Images/DB6AA260-5D0A-4F7E-9D70-856119CFE4D3.PNG"
+         alt="Womens Reflective T-Shirt">
+
+    <button onclick="nextImage()">
+        →
+    </button>
+
+</div>
+
+    <!-- Right side: product details and purchase options -->
+    <div class="product-details">
+
+        <!-- Product name and price -->
+        <h1>
+            Womens Reflective Tee
+        </h1>
+
+        <h2>
+            £27.99
+        </h2>
+
+        <!-- Product description -->
+        <p>
+            Stylish reflective t-shirt designed for
+            comfort and visibility. Lightweight fabric
+            with a modern fit, perfect for everyday
+            wear or night outings.
+        </p>
+
+        <!-- Size and quantity selection grouped together -->
+        <div class="product-options">
+
+            <!-- Size selection dropdown -->
+            <div>
+
+                <label for="size">
+                    Select Size:
+                </label>
+
+                <select id="size">
+
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+
+                </select>
+
+            </div>
+
+            <!-- Quantity input -->
+            <div>
+
+                <label for="quantity">
+                    Quantity:
+                </label>
+
+                <input type="number"
+                       id="quantity"
+                       value="1"
+                       min="1">
+
+            </div>
+
+        </div>
+
+        <!-- Divider separating options from highlights -->
+        <div class="product-divider"></div>
+
+        <!-- Key product benefits -->
+        <p class="product-highlight">
+            ✔ Free UK delivery
+        </p>
+
+        <p class="product-highlight">
+            ✔ Premium quality materials
+        </p>
+
+        <p class="product-highlight">
+            ✔ 30-day returns
+        </p>
+
+        <!-- Add to cart button -->
+        <button class="add-to-cart"
+                onclick="addToCart()">
+
+            Add to Cart
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- iPhone style add to cart notification -->
+<div id="cart-notification">
+
+    Added to cart ✓
+
+</div>
+
+<!-- Contains secondary navigation, copyright and social links -->
+<div class="footer">
+
+    <!-- Additional navigation links for quick access -->
+    <div class="secondary-links">
+
+        <p>
+            <a href="about.html">About Us</a>
+        </p>
+
+        <p>
+            <a href="contact.html">Contact Us</a>
+        </p>
+
+        <p>
+            <a href="#">Careers</a>
+        </p>
+
+    </div>
+
+    <!-- Copyright information -->
+    <div class="copyright">
+
+        <p>
+            © 2026 Polluted Streetwear.
+            All rights reserved.
+        </p>
+
+    </div>
+
+    <!-- Social media icons linking to external platforms -->
+    <div class="socials">
+
+        <a href="https://www.facebook.com"
+           target="_blank">
+
+            <img src="Images/facebook.png"
+                 alt="Facebook">
+
+        </a>
+
+        <a href="https://www.twitter.com"
+           target="_blank">
+
+            <img src="Images/x.png"
+                 alt="X">
+
+        </a>
+
+        <a href="https://www.instagram.com"
+           target="_blank">
+
+            <img src="Images/instagram.png"
+                 alt="Instagram">
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- JavaScript for add to cart functionality -->
+<script>
+
+/* Updates cart badge using saved quantities */
+function updateCartBadge() {
+
+    /* Gets saved quantities from local storage */
+    let trainersQty =
+        Number(localStorage.getItem("trainersQty")) || 0;
+
+    let pantsQty =
+        Number(localStorage.getItem("pantsQty")) || 0;
+
+    let shirtQty =
+        Number(localStorage.getItem("shirtQty")) || 0;
+
+    let hoodieQty =
+        Number(localStorage.getItem("hoodieQty")) || 0;
+
+    /* Calculates total quantity */
+    let total =
+        trainersQty +
+        pantsQty +
+        shirtQty +
+        hoodieQty;
+
+    /* Updates badge number */
+    document.getElementById("cart-badge").innerText =
+        total;
+}
+
+/* Adds t-shirt product to cart */
+function addToCart() {
+
+    /* Gets current t-shirt quantity */
+    let currentQty =
+        localStorage.getItem("shirtQty");
+
+    /* If no quantity exists starts at 0 */
+    if (currentQty === null) {
+
+        currentQty = 0;
+
+    }
+
+    /* Gets quantity selected by user */
+    let selectedQty =
+        document.getElementById("quantity").value;
+
+    /* Converts values into numbers */
+    currentQty =
+        Number(currentQty);
+
+    selectedQty =
+        Number(selectedQty);
+
+    /* Adds selected quantity */
+    currentQty += selectedQty;
+
+    /* Saves updated quantity */
+    localStorage.setItem(
+        "shirtQty",
+        currentQty
+    );
+
+    /* Makes sure product is visible again */
+    localStorage.setItem(
+        "shirtRemoved",
+        "false"
+    );
+
+    /* Updates cart badge instantly */
+updateCartBadge();
+
+/* Plays iPhone notification sound */
+let sound =
+    document.getElementById(
+        "cart-sound"
+    );
+
+sound.currentTime = 0;
+
+sound.play();
+
+/* Gets notification element */
+let notification =
+    document.getElementById(
+        "cart-notification"
+    );
+    /* Shows notification animation */
+    notification.classList.add("show");
+
+    /* Removes notification after delay */
+    setTimeout(function () {
+
+        notification.classList.remove("show");
+
+    }, 2000);
+}
+
+/* Runs automatically when page loads */
+window.onload = function () {
+
+    updateCartBadge();
+
+};
+
+</script>
+
+<!-- iPhone style add to cart sound -->
+<audio id="cart-sound">
+
+    <source src="Sounds/iphone_notification.mp3"
+            type="audio/mpeg">
+
+</audio>
+<script>
+
+let images = [
+
+    "Images/DB6AA260-5D0A-4F7E-9D70-856119CFE4D3.PNG",
+    "Images/tshirt crop.png"
+
+];
+
+let currentImage = 0;
+
+function nextImage() {
+
+    currentImage++;
+
+    if (currentImage >= images.length) {
+
+        currentImage = 0;
+
+    }
+
+    document.getElementById(
+        "product-image"
+    ).src =
+        images[currentImage];
+
+}
+
+function previousImage() {
+
+    currentImage--;
+
+    if (currentImage < 0) {
+
+        currentImage =
+            images.length - 1;
+
+    }
+
+    document.getElementById(
+        "product-image"
+    ).src =
+        images[currentImage];
+
+}
+
+</script>
+</body>
+</html>
